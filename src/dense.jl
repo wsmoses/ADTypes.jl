@@ -59,6 +59,26 @@ end
 mode(::AutoEnzyme) = ForwardOrReverseMode()  # specialized in the extension
 
 """
+    AutoReactant{M}
+
+Struct used to select the use of the [Reactant.jl](https://github.com/EnzymeAD/Reactant.jl) execution engine, alongside an inner AD tool backend for automatic differentiation.
+
+Defined by [ADTypes.jl](https://github.com/SciML/ADTypes.jl).
+
+# Constructors
+
+    AutoReactant(; mode=AutoEnzyme())
+
+# Fields
+
+  - `mode::AbstractADType`: an abstract AD type for the inner differentiation mechanism
+
+"""
+Base.@kwdef struct AutoReactant{M} <: AbstractADType
+    mode::AbstractADType = AutoEnzyme()
+end
+
+"""
     AutoFastDifferentiation
 
 Struct used to select the [FastDifferentiation.jl](https://github.com/brianguenter/FastDifferentiation.jl) backend for automatic differentiation.

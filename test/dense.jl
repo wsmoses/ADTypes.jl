@@ -157,3 +157,11 @@ end
     @test ad isa AutoZygote
     @test mode(ad) isa ReverseMode
 end
+s
+@testset "AutoReactant" begin
+    ad = AutoReactant()
+    @test ad isa AbstractADType
+    @test ad isa AutoReactant
+    @test ad.mode == AutoEnzyme()
+    @test mode(ad) == mode(AutoEnzyme())
+end
